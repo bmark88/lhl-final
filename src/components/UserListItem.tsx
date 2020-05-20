@@ -29,20 +29,20 @@ export default function UserListItem(props: any) {
 
   useEffect(() => {
     axios
-      .get(`localhost:8000/rate/${user.id}`)
+      .get(`http://localhost:3001/rate/${user.id}`)
       .then(data => setValue(Number(data.data.avg)))
       .catch(e => console.log(e))
   }, [])
 
   const handleOnChange = (_event: any, newValue: any) => {
     axios
-      .post(`localhost:8000/rate/${user.id}`, {
+      .post(`http://localhost:3001/rate/${user.id}`, {
         raterId: currentUserID,
         rating: newValue,
       })
       .then(() => {
         axios
-          .get(`localhost:8000/rate/${user.id}`)
+          .get(`http://localhost:3001/rate/${user.id}`)
           .then(data => {
 
             setIsChecked(false)
